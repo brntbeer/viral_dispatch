@@ -8,6 +8,12 @@
 </head>
 <body>
   <div class="container">
+    <h1>Viral Message Board</h1>
+    <div class="navbar">
+      <div class="rounded navbar-inner dark-grey">
+        <%= link_to raw("<i class='icon-edit'></i> Post"), new_post_path, :class => "btn" %>
+      </div>
+    </div>
     <%= yield %>
   </div>
 </body>
