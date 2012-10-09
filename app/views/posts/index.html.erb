@@ -1,15 +1,4 @@
-<h1>Viral Message Board</h1>
 
 <table class="table">
-  <tr class="row-bordered row-dark">
-    <th>Posts</th>
-    <th></th>
-    <th></th>
-  </tr>
-
   <%= render :partial => @posts.reverse %>
 </table>
-
-<div id="post_form">
-  <%= render "form" %>
-</div>
