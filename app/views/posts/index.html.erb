@@ -2,23 +2,14 @@
 
 <table class="table">
   <tr>
-    <th>edit</th>
+    <th></th>
     <th>Title</th>
-    <th>destroy</th>
+    <th></th>
   </tr>
 
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td>
-      <%= link_to post.title %><br />
-      <%= post.body %>
-    </td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <%= render :partial => @posts.reverse %>
 </table>
 
-<br />
-
-<%= link_to 'New Post', new_post_path %>
+<div id="post_form">
+  <%= render "form" %>
+</div>
