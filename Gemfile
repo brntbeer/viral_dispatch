@@ -4,6 +4,7 @@ gem 'rails', '3.2.8'
 gem 'pg'
 gem "foreman"
 gem "heroku"
+gem "pry"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
