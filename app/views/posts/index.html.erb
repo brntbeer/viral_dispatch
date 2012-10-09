@@ -1,4 +1,1 @@
-
-<table class="table">
-  <%= render :partial => @posts.reverse %>
-</table>
+<%= render :partial => "posts", :collection => @posts.reverse, :as => :post%>

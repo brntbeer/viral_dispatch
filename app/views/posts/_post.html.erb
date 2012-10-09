@@ -1,8 +1,10 @@
-<%= content_tag_for(:tr, post) do %>
-  <td class="span1"><%= link_to raw("<i class='icon-pencil'></i>"), edit_post_path(post)%></td>
-  <td>
-    <%= link_to post.title, post_path(post) %><br />
-    <small><p class="muted">Posted <%= post.created_at.strftime("%B, %e %Y ") %></p></small>
-  </td>
-  <td class="span1 pull-right"><%= link_to (raw"<i class='icon-remove'></i>"), post, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
-<% end %>
+<div class="span1">
+  <%= link_to raw("<i class='icon-pencil'></i>"), edit_post_path(post)%>
+</div>
+<div class="span8">
+  <%= link_to post.title, post_path(post) %><br />
+  <small><p class="muted">Posted <%= post.created_at.strftime("%B, %e %Y @ %I:%M:%S %p") %></p></small>
+</div>
+<div class="span1 pull-right">
+  <%= link_to (raw"<i class='icon-remove'></i>"), post, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %>
+</div>
