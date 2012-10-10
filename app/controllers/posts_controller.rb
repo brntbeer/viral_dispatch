@@ -75,9 +75,13 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url }
       format.json { head :no_content }
-      format.js
+      #from index is only place we need to ajaxy
+      if env["HTTP_REFERER"] == root_url
+        format.js
+      else
+        format.js { render :js => "window.location.href = '#{root_url}'"}
+      end
     end
   end
 end
