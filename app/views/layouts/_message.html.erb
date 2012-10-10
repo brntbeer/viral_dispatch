@@ -1,0 +1,4 @@
+<% flash.keys.each do |key| %>
+  <% styles = {:notice => :success, :error => :error, :warrning => :block} %>
+  <div class="alert alert-<%= styles[key].to_s %>"><%= flash[key] %></div>
+<% end %>

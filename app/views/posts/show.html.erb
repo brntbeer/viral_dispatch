@@ -1,7 +1,13 @@
-<p id="notice"><%= notice %></p>
 <div class="thread span12">
   <%= render :partial => @post %>
   <div class="span10 post_body offset1">
     <p><%= @post.body %></p>
   </div>
+  <div class="comments">
+    <%= render :partial => @post.comments %>
+  </div>
+</div>
+<div id="comment_form" class="span12">
+  <div class="line"></div>
+  <%= render 'comments/form' %>
 </div>
