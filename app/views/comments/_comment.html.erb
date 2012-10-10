@@ -1,0 +1,14 @@
+<%= content_tag_for(:div, comment, :class => "pull-left span10 offset1") do %>
+  <div class="line"></div>
+  <div class="span1">
+    <%= link_to raw("<i class='icon-pencil'></i>"), edit_comment_path(comment)%>
+  </div>
+  <div class="span6 post_body">
+    <small><p class="muted">Commented <%= comment.created_at.strftime("%B, %e %Y @ %I:%M:%S %p") %></p></small>
+    <%= comment.body %>
+  </div>
+  <div class="span1 pull-right">
+    <%= link_to (raw"<i class='icon-remove'></i>"), comment, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %>
+  </div>
+<% end %>
+
