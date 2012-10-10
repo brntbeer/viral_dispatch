@@ -4,7 +4,7 @@
     <%= link_to raw("<i class='icon-pencil'></i>"), edit_comment_path(comment)%>
   </div>
   <div class="span6 post_body">
-    <small><p class="muted">Commented <%= comment.created_at.strftime("%B, %e %Y @ %I:%M:%S %p") %></p></small>
+    <a href="#comment_<%=comment.id%>"><small><p class="muted">Commented <%= comment.created_at.strftime("%B, %e %Y @ %I:%M:%S %p") %></p></small></a>
     <%= comment.body %>
   </div>
   <div class="span1 pull-right">
