@@ -5,6 +5,10 @@ gem 'pg'
 gem "foreman"
 gem "heroku"
 gem "pry"
+gem "omniauth-github"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
+gem "thin"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
