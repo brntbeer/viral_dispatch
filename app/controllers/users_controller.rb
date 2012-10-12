@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_filter :check_existing_user, only: :callback
 
   def callback
-    logger.info request.env['omniauth.auth']
     @user = User.new
     @user.send("create_user_#{request.env['omniauth.auth'][:provider]}",request.env["omniauth.auth"])
 
@@ -26,7 +25,7 @@ class UsersController < ApplicationController
   private
 
   def check_existing_user
-    user = User.find_by_login_type(request.env['omniauth.auth'][:provider])
+    user = User.send("find_by_username_for_#{request.env['omniauth.auth'][:provider]}", request.env["omniauth.auth"])
     if user
       session["user"] = {username: user.username, login_type: user.login_type}
       redirect_to root_url
