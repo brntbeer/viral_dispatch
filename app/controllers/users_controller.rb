@@ -30,6 +30,9 @@ class UsersController < ApplicationController
       session["user"] = {username: user.username, login_type: user.login_type}
       redirect_to root_url
     else
+      logger.info request.env['omniauth.auth'][:provider]
+      logger.info request.env['omniauth.auth'][:info]
+      logger.info "No previous user found."
       session.clear
     end
   end
