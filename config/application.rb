@@ -59,5 +59,8 @@ module ViralDispatch
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.middleware.use Rack::Session::Cookie, :key => "rack.session",
+      :expire_after => 1209600,
+      :secret => (ENV["SESSION_SECRET"] || raise("missing SESSION_SECRET"))
   end
 end

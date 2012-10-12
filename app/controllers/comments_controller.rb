@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_filter :require_login, only: [:create, :update, :destroy]
+
   # GET /comments/1
   # GET /comments/1.json
   def show
@@ -13,6 +15,7 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
     @comment = Comment.find(params[:id])
+    @post = @comment.post
   end
 
   # POST /comments
@@ -38,7 +41,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @comment.post, notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

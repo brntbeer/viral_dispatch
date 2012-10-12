@@ -8,6 +8,11 @@
 </head>
 <body>
   <div class="container">
+    <% if session["user"] %>
+      <p class="pull-right"><%= link_to "Logout", logout_url %> </p>
+    <% else %>
+      <p class="pull-right"><%= link_to " Login with GitHub", "/auth/github/" %> </p>
+    <% end %>
     <h1 class="title_link"><%= link_to "Viral Message Board", root_url %></h1>
     <div class="navbar">
       <div class="rounded navbar-inner dark-grey">

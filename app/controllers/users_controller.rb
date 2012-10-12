@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
+  before_filter :check_existing_user, only: :callback
+
   def callback
     @user = User.new
     @user.send("create_user_#{request.env['omniauth.auth'][:provider]}",request.env["omniauth.auth"])
-    binding.pry
+    session["user"] = {username: @user.username}
 
     respond_to do |format|
       if @user.save
@@ -13,6 +15,22 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
 
+  def logout
+    session.clear
+    redirect_to root_url, notice: "Successfully logged out"
+  end
+
+  private
+
+  def check_existing_user
+    user = User.find_by_login_type(request.env['omniauth.auth'][:provider])
+    if user
+      session["user"] = {username: user.username}
+      redirect_to root_url
+    else
+      session.clear
+    end
   end
 end

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_filter :require_login, only: [:create, :update, :destroy]
+
   # GET /posts
   # GET /posts.json
   def index
