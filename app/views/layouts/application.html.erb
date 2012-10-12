@@ -10,7 +10,7 @@
   <div class="container">
     <% if session["user"] %>
       <p class="pull-right">
-      Logged in with <%= session["user"]["login_type"]%> | <%= link_to "Logout", logout_url %> </p>
+      Logged in with <%= session["user"][:login_type].titleize%> | <%= link_to "Logout", logout_url %> </p>
     <% else %>
       <p class="pull-right">
         Login with <%= link_to "GitHub", "/auth/github/" %> | 
