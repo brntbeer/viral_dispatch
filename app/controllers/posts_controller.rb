@@ -14,7 +14,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @user = User.where(login_type: session["user"][:login_type], username: session["user"][:username]).first
 
     respond_to do |format|
       format.html
@@ -27,7 +26,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @user = User.where(login_type: session["user"][:login_type],username: session["user"][:username]).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,6 +42,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
+    @post.user = User.where(login_type: session["user"][:login_type],username: session["user"][:username]).first
 
     respond_to do |format|
       if @post.save
