@@ -9,4 +9,9 @@ class User < ActiveRecord::Base
     self.login_type = "github"
     self.username = params[:info][:nickname]
   end
+
+  def create_user_twitter(params)
+    self.login_type = "twitter"
+    self.username = params[:info][:screen_name]
+  end
 end

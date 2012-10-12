@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :check_existing_user, only: :callback
 
   def callback
+    logger.info request.env['omniauth.auth']
     @user = User.new
     @user.send("create_user_#{request.env['omniauth.auth'][:provider]}",request.env["omniauth.auth"])
 
