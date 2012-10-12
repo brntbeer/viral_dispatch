@@ -9,9 +9,13 @@
 <body>
   <div class="container">
     <% if session["user"] %>
-      <p class="pull-right"><%= link_to "Logout", logout_url %> </p>
+      <p class="pull-right">
+      Logged in with <%= session["user"]["login_type"]%> | <%= link_to "Logout", logout_url %> </p>
     <% else %>
-      <p class="pull-right"><%= link_to " Login with GitHub", "/auth/github/" %> </p>
+      <p class="pull-right">
+        Login with <%= link_to "GitHub", "/auth/github/" %> | 
+        <%= link_to "Twitter", "/auth/twitter/" %>
+      </p>
     <% end %>
     <h1 class="title_link"><%= link_to "Viral Message Board", root_url %></h1>
     <div class="navbar">

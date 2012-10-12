@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :posts
 
+  validates :login_type, :presence => true
+
   def create_user_github(params)
     self.login_type = "github"
     self.username = params[:info][:nickname]

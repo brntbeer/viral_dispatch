@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   def callback
     @user = User.new
     @user.send("create_user_#{request.env['omniauth.auth'][:provider]}",request.env["omniauth.auth"])
-    session["user"] = {username: @user.username}
 
     respond_to do |format|
       if @user.save
+        session["user"] = {username: @user.username, login_type: @user.login_type}
         format.html { redirect_to root_url, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def check_existing_user
     user = User.find_by_login_type(request.env['omniauth.auth'][:provider])
     if user
-      session["user"] = {username: user.username}
+      session["user"] = {username: user.username, login_type: user.login_type}
       redirect_to root_url
     else
       session.clear
